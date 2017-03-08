@@ -108,7 +108,7 @@ console.log("\n*** End ***\n");
 */
 function accessObjectInObject(obj){
 	//Print the parameter
-
+	console.log(obj);
 	//Iterate through and print the values in the object
 
 	//Create a conditional to check if the key is "topping"
