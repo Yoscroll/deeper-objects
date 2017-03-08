@@ -71,7 +71,18 @@ change(preview);
 * 
 * Return 	urls (array)
 */
-
+function urlThing(data){
+	var urls = [];
+	for (var key in data){
+		if(key==="resolutions"){
+			for (var i = 0; i < key[data].length; i++) {
+				if(key[data][i]){
+					
+				}
+			}
+		}
+	}
+}
 /*
 * Function that retrieves the first nested key and value pairing
 * from the values of "images", stores them in a new object called 
