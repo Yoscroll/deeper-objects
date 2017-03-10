@@ -46,7 +46,6 @@ function isItEnabled(data){
 			isEnabled+=data[key];
 		}
 	}
-	console.log(isEnabled);
 	return isEnabled;
 }
 isItEnabled(preview);
@@ -60,7 +59,6 @@ function change(data){
 	for (var key in data){
 		if(key==="enabled"){
 			data[key]=true;
-			console.log(data[key]);
 		}
 	}
 }
@@ -74,15 +72,33 @@ change(preview);
 function urlThing(data){
 	var urls = [];
 	for (var key in data){
-		if(key==="resolutions"){
-			for (var i = 0; i < key[data].length; i++) {
-				if(key[data][i]){
-					
+		if(key==="images"){
+			for (var i = 0; i < data[key].length; i++) {
+				for (var innerKey in data[key][i]){
+					if(Array.isArray(data[key][i][innerKey])){
+						for (var n = 0; n < data[key][i][innerKey].length; n++) {
+							for (var urlKey in data[key][i][innerKey][n]){
+								if(urlKey==="url"){
+									urls.push(data[key][i][innerKey][n][urlKey]);
+								}
+							}
+						}
+					}
+					else{
+						for (var urlKey in data[key][i][innerKey]){
+							if(urlKey==="url"){
+								urls.push(data[key][i][innerKey][urlKey]);
+							}
+						}
+					}
 				}
 			}
 		}
 	}
+	console.log(urls);
+	return urls;
 }
+urlThing(preview);
 /*
 * Function that retrieves the first nested key and value pairing
 * from the values of "images", stores them in a new object called 
@@ -95,3 +111,26 @@ function urlThing(data){
 *
 * Return 	allKeyValuePairs (object)
 */
+var allKeyValuePairs = {
+	keys:[],
+	values: []
+};
+
+function pair(data){
+	var keysArr, valuesArry = [];
+	for (var key in data){
+		if(key==="images"){
+			for (var i = 0; i < data[key].length; i++) {
+				for (var innerKey in data[key][i]){
+					keys.push(innerKey);
+					values.push(data[key][i][innerKey]);
+					}
+				}
+			}
+		}
+	}
+	allKeyValuePairs.keys = keysArr;
+	allKeyValuePairs.values = valuesArr;
+}
+pair(preview);
+console.log(allKeyValuePairs);
