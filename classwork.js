@@ -116,15 +116,14 @@ var allKeyValuePairs = {
 	values: []
 };
 
-function pair(data){
+function pairObj(data){
 	var keysArr, valuesArry = [];
 	for (var key in data){
 		if(key==="images"){
 			for (var i = 0; i < data[key].length; i++) {
 				for (var innerKey in data[key][i]){
-					keys.push(innerKey);
-					values.push(data[key][i][innerKey]);
-					}
+					keysArr.push(innerKey);
+					valuesArr.push(data[key][i][innerKey]);
 				}
 			}
 		}
@@ -132,5 +131,5 @@ function pair(data){
 	allKeyValuePairs.keys = keysArr;
 	allKeyValuePairs.values = valuesArr;
 }
-pair(preview);
+pairObj(preview);
 console.log(allKeyValuePairs);
